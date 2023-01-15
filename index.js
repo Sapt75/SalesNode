@@ -282,8 +282,8 @@ app.get('/piechart/:month', (req, res) => {
 //To get data http://localhost:3000/alldata/month 
 app.get('/alldata/:month', async (req, res) => {
 
-     //Converting the first Letter to Uppercase, so there's no error if user inputs month in lower case
-     let month = req.params.month.charAt(0).toUpperCase() + req.params.month.slice(1);
+    //Converting the first Letter to Uppercase, so there's no error if user inputs month in lower case
+    let month = req.params.month.charAt(0).toUpperCase() + req.params.month.slice(1);
 
     //Fetching data from all teh api's and merging it together in a json
     let alldata = {
@@ -291,7 +291,7 @@ app.get('/alldata/:month', async (req, res) => {
         BarChart: await fetch(`http://localhost:3000/barchart/${req.params.month}`).then((response) => response.json()),
         PieChart: await fetch(`http://localhost:3000/piechart/${req.params.month}`).then((response) => response.json())
     }
-   
+
     res.send(alldata)
 
 })
