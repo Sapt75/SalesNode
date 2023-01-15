@@ -73,7 +73,7 @@ app.get('/data/:month', (req, res) => {
                 }
             })
             res.send({
-                Sales: totalSales + " Rs",
+                Sales: totalSales.toFixed(2) + " Rs",
                 Sold: totalItemsSold,
                 Unsold: totalItemsUnsold
             })
