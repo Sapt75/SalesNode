@@ -5,7 +5,7 @@ const port = 3000
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 //Connencting to the database Mongo DB Atlas
-mongoose.connect('mongodb+srv://saptarshi:saptarshi2001@cluster0.hmpokef.mongodb.net/SalesData?retryWrites=true&w=majority')
+mongoose.connect('mongodb://localhost:27017')
 
 //Defining the Schema
 const itemSchema = new mongoose.Schema({
@@ -254,7 +254,7 @@ app.get('/piechart/:month', (req, res) => {
         } else {
             //Checking if the conditions are met and then incrementing the values of the sold/unsold items in each category
             result.map((item) => {
-                if (item.date == req.params.month) {
+                if (item.date == month) {
                     if (item.sold == true) {
                         data[item.category].sold = data[item.category].sold + 1
                     } else {
@@ -287,9 +287,9 @@ app.get('/alldata/:month', async (req, res) => {
 
     //Fetching data from all teh api's and merging it together in a json
     let alldata = {
-        data: await fetch(`http://localhost:3000/data/${req.params.month}`).then((response) => response.json()),
-        BarChart: await fetch(`http://localhost:3000/barchart/${req.params.month}`).then((response) => response.json()),
-        PieChart: await fetch(`http://localhost:3000/piechart/${req.params.month}`).then((response) => response.json())
+        data: await fetch(`http://localhost:3000/data/${month}`).then((response) => response.json()),
+        BarChart: await fetch(`http://localhost:3000/barchart/${month}`).then((response) => response.json()),
+        PieChart: await fetch(`http://localhost:3000/piechart/${month}`).then((response) => response.json())
     }
 
     res.send(alldata)
