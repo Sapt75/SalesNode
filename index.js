@@ -5,7 +5,7 @@ const port = 3000
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 //Connencting to the database Mongo DB Atlas
-mongoose.connect('mongodb://localhost:27017')
+mongoose.connect('mongodb+srv://saptarshi:saptarshi2001@cluster0.hmpokef.mongodb.net/SalesData?retryWrites=true&w=majority')
 
 //Defining the Schema
 const itemSchema = new mongoose.Schema({
